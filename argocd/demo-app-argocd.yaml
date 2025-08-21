@@ -3,6 +3,20 @@ kind: Application
 metadata:
   name: demo-app
   namespace: argocd
+  annotations:
+    # Tell image updater which image to track
+    argocd-image-updater.argoproj.io/image-list: demo=172.18.196.94:7000/demo-app
+
+    # Strategy: use semver so it picks the highest numeric tag (7,8,9…)
+    argocd-image-updater.argoproj.io/demo.update-strategy: semver
+
+    # Optional: if private registry, specify pull secret
+    argocd-image-updater.argoproj.io/demo.pull-secret: pullsecret:default/nexus-reg-cred
+
+    # How to apply the new tag
+    # Option 1: Write directly back into Kubernetes manifests
+    argocd-image-updater.argoproj.io/write-back-method: argocd
+    # (alternative is `git`, but then you need GitHub PAT/SSH creds)
 spec:
   project: default
   source:

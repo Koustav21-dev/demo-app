@@ -1,14 +1,10 @@
+# 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-app
   labels:
     app: demo-app
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: demo=172.18.196.94:7000/demo-app
-    argocd-image-updater.argoproj.io/demo.update-strategy: semver
-    argocd-image-updater.argoproj.io/demo.pull-secret: pullsecret:default/nexus-reg-cred
-    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   replicas: 1
   selector:
@@ -23,6 +19,6 @@ spec:
         - name: nexus-reg-cred
       containers:
         - name: demo-app
-          image: 172.18.196.94:7000/demo-app:7
+          image: 172.18.196.94:7000/demo-app:1   # starting tag, will be updated automatically
           ports:
             - containerPort: 3000
