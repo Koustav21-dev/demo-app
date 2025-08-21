@@ -23,6 +23,6 @@ spec:
         - name: nexus-reg-cred
       containers:
         - name: demo-app
-          image: 172.18.196.94:7000/demo-app
+          image: 172.18.196.94:7000/demo-app:7
           ports:
             - containerPort: 3000
