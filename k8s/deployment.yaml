@@ -6,9 +6,9 @@ metadata:
     app: demo-app
   annotations:
     argocd-image-updater.argoproj.io/image-list: demo=172.18.196.94:7000/demo-app
-    argocd-image-updater.argoproj.io/demo.update-strategy: latest
+    argocd-image-updater.argoproj.io/demo.update-strategy: semver
     argocd-image-updater.argoproj.io/demo.pull-secret: pullsecret:default/nexus-reg-cred
-    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/write-back-method: argocd
 spec:
   replicas: 1
   selector:
