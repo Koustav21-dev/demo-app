@@ -8,7 +8,7 @@ metadata:
     argocd-image-updater.argoproj.io/image-list: demo=172.18.196.94:7000/demo-app
     argocd-image-updater.argoproj.io/demo.update-strategy: semver
     argocd-image-updater.argoproj.io/demo.pull-secret: pullsecret:default/nexus-reg-cred
-    argocd-image-updater.argoproj.io/write-back-method: argocd
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   replicas: 1
   selector:
