@@ -7,6 +7,9 @@ metadata:
     # Track the image in the private registry
     argocd-image-updater.argoproj.io/image-list: demo=172.18.196.94:7000/demo-app
 
+    # Map updater alias (demo) → kustomize image name
+    argocd-image-updater.argoproj.io/demo.kustomize.image-name: 172.18.196.94:7000/demo-app
+
     # Only allow numeric tags (1,2,3,4...)
     argocd-image-updater.argoproj.io/demo.allow-tags: regexp:^\d+$
 
@@ -24,7 +27,6 @@ spec:
     repoURL: https://github.com/Koustav21-dev/demo-app.git
     targetRevision: master
     path: k8s   # where deployment.yaml + service.yaml + kustomization.yaml live
-  
   destination:
     server: https://kubernetes.default.svc
     namespace: default
