@@ -14,7 +14,7 @@ metadata:
     argocd-image-updater.argoproj.io/demo.allow-tags: regexp:^\d+$
 
     # Strategy: use alphabetical (highest number wins for numeric tags)
-    argocd-image-updater.argoproj.io/demo.update-strategy: alphabetical
+    argocd-image-updater.argoproj.io/demo.update-strategy: latest
 
     # Use pull secret from argocd namespace
     argocd-image-updater.argoproj.io/demo.pull-secret: pullsecret:argocd/nexus-reg-cred
