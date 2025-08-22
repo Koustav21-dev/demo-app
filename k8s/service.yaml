@@ -2,11 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: demo-app
+  labels:
+    app: demo-app
 spec:
   selector:
     app: demo-app
+  type: NodePort   # change to LoadBalancer if using cloud
   ports:
-    - port: 80
-      targetPort: 8080
-      protocol: TCP
-
+    - name: http
+      port: 3000          # service port (inside cluster)
+      targetPort: 3000    # container port
+      nodePort: 32000     # external port (accessible on <NodeIP>:32000)

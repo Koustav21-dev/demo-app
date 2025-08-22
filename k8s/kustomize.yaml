@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  # add service.yaml or other manifests here if you have them
+
+images:
+  - name: 172.18.196.94:7000/demo-app
+    newTag: "1"   # initial tag; ArgoCD Image Updater will update this

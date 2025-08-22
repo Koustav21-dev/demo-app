@@ -1,29 +1,64 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: demo-app
+#   namespace: argocd
+#   annotations:
+#     # Tell image updater which image to track
+#     argocd-image-updater.argoproj.io/image-list: demo=172.18.196.94:7000/demo-app
+#     argocd-image-updater.argoproj.io/demo.allow-tags: regexp:^\\d+$
+
+#     # Strategy: use semver so it picks the highest numeric tag (7,8,9…)
+#     argocd-image-updater.argoproj.io/demo.update-strategy: name
+
+#     # Optional: if private registry, specify pull secret
+#     argocd-image-updater.argoproj.io/demo.pull-secret: pullsecret:default/nexus-reg-cred
+
+#     # How to apply the new tag
+#     # Option 1: Write directly back into Kubernetes manifests
+#     argocd-image-updater.argoproj.io/write-back-method: argocd
+#     # (alternative is `git`, but then you need GitHub PAT/SSH creds)
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://github.com/Koustav21-dev/demo-app.git
+#     targetRevision: master
+#     path: k8s
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: demo-app
   namespace: argocd
   annotations:
-    # Tell image updater which image to track
+    # Track the image in the private registry
     argocd-image-updater.argoproj.io/image-list: demo=172.18.196.94:7000/demo-app
-    argocd-image-updater.argoproj.io/demo.allow-tags: regexp:^\\d+$
 
-    # Strategy: use semver so it picks the highest numeric tag (7,8,9…)
+    # Only allow numeric tags (1,2,3,4...)
+    argocd-image-updater.argoproj.io/demo.allow-tags: regexp:^\d+$
+
+    # Strategy: pick the highest available numeric tag
     argocd-image-updater.argoproj.io/demo.update-strategy: name
 
-    # Optional: if private registry, specify pull secret
+    # Use pull secret if registry is private
     argocd-image-updater.argoproj.io/demo.pull-secret: pullsecret:default/nexus-reg-cred
 
-    # How to apply the new tag
-    # Option 1: Write directly back into Kubernetes manifests
+    # Write updates back through ArgoCD (instead of git commits)
     argocd-image-updater.argoproj.io/write-back-method: argocd
-    # (alternative is `git`, but then you need GitHub PAT/SSH creds)
 spec:
   project: default
   source:
     repoURL: https://github.com/Koustav21-dev/demo-app.git
     targetRevision: master
-    path: k8s
+    path: k8s   # where deployment.yaml + kustomization.yaml live
   destination:
     server: https://kubernetes.default.svc
     namespace: default
