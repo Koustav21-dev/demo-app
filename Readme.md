@@ -1,5 +1,5 @@
 # Demo app flow
-![flow](public\workflow.png)
+![flow](public/workflow.png)
 
 # CI Flow
 ## 1. create app and push into github
