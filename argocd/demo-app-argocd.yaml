@@ -24,7 +24,7 @@ spec:
     repoURL: https://github.com/Koustav21-dev/demo-app.git
     targetRevision: master
     path: k8s   # where deployment.yaml + service.yaml + kustomization.yaml live
-    kustomize: {}   # 👈 force ArgoCD to use Kustomize here
+  
   destination:
     server: https://kubernetes.default.svc
     namespace: default
