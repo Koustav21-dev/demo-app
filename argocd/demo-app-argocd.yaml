@@ -17,7 +17,7 @@ metadata:
     argocd-image-updater.argoproj.io/demo.update-strategy: name
 
     # Use pull secret if registry is private
-    argocd-image-updater.argoproj.io/demo.pull-secret: pullsecret:default/nexus-reg-cred
+    argocd-image-updater.argoproj.io/demo.pull-secret: pullsecret:argocd/nexus-reg-cred
 
     # Write updates back through ArgoCD (instead of git commits)
     argocd-image-updater.argoproj.io/write-back-method: argocd
