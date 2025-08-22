@@ -6,6 +6,7 @@ metadata:
   annotations:
     # Tell image updater which image to track
     argocd-image-updater.argoproj.io/image-list: demo=172.18.196.94:7000/demo-app
+    argocd-image-updater.argoproj.io/demo.allow-tags: regexp:^\\d+$
 
     # Strategy: use semver so it picks the highest numeric tag (7,8,9…)
     argocd-image-updater.argoproj.io/demo.update-strategy: latest
