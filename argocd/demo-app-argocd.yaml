@@ -9,7 +9,7 @@ metadata:
     argocd-image-updater.argoproj.io/demo.allow-tags: regexp:^\\d+$
 
     # Strategy: use semver so it picks the highest numeric tag (7,8,9…)
-    argocd-image-updater.argoproj.io/demo.update-strategy: latest
+    argocd-image-updater.argoproj.io/demo.update-strategy: name
 
     # Optional: if private registry, specify pull secret
     argocd-image-updater.argoproj.io/demo.pull-secret: pullsecret:default/nexus-reg-cred
