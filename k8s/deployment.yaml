@@ -18,6 +18,6 @@ spec:
         - name: nexus-reg-cred
       containers:
         - name: demo-app
-          image: 172.18.196.94:7000/demo-app   # tag will be managed by Kustomize
+          image: 172.18.196.94:7000/demo-app # tag will be managed by Kustomize
           ports:
             - containerPort: 3000
