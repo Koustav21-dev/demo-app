@@ -167,3 +167,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 
 ```
+
+# Access Via browser
+
+![browser](/public/image.png)
