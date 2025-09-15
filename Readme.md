@@ -27,6 +27,12 @@ https://help.sonatype.com/en/install-nexus-repository.html
 ```
 ipconfig
 ```
+- Add the following in daemon.json of docker
+  ```
+  "insecure-registries": [
+    "172.18.X.X:7000"
+  ]
+  ```
 - create a docker hosted repo in nexus
 ![](/public/nexus1.png)
 
