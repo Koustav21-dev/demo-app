@@ -82,6 +82,12 @@ kubectl create secret docker-registry nexus-reg-cred \
   --docker-password=admin12 -n argocd
  ```
 
+Install argocd image updater:
+```
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
+
+```
+
 - Write all your K8S manifest as well as argocd manifest
 
 - Edit argocd configmap to add following code:
